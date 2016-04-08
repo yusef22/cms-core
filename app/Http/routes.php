@@ -15,6 +15,12 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('check', ['middleware' => ['auth', 'roles'], 'roles' => ['administrator', 'manager'], function()
+	{
+		return "OK!";
+	}
+]);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
